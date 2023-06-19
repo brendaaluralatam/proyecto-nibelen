@@ -1,6 +1,5 @@
 package org.example.model;
 
-import javax.swing.text.StyleConstants;
 import java.awt.*;
 import java.util.Map;
 

@@ -6,19 +6,20 @@ package org.example.view;
 
 import org.example.model.FontFormat;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author admin
  */
-public class ColorSelectorDialog extends javax.swing.JDialog {
+public class ColorSelectorDialog extends JDialog {
 
     private static boolean isBtnColorForegroundSelected = true;
     /**
@@ -33,7 +34,7 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
     /**
      * Creates new form ColorSelectorDialog
      */
-    public ColorSelectorDialog(java.awt.Frame parent, boolean modal) {
+    public ColorSelectorDialog(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         // Close the dialog when Esc is pressed
@@ -64,132 +65,116 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        okButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        colorChooser = new javax.swing.JColorChooser();
-        jLabel1 = new javax.swing.JLabel();
-        btnForeColor = new javax.swing.JButton();
-        btnBackColor = new javax.swing.JButton();
-        paneBackColor = new javax.swing.JPanel();
-        paneForeColor = new javax.swing.JPanel();
+        okButton = new JButton();
+        cancelButton = new JButton();
+        colorChooser = new JColorChooser();
+        jLabel1 = new JLabel();
+        btnForeColor = new JButton();
+        btnBackColor = new JButton();
+        paneBackColor = new JPanel();
+        paneForeColor = new JPanel();
 
         setTitle("Selector de color");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
                 closeDialog(evt);
             }
         });
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+        okButton.addActionListener(this::okButtonActionPerformed);
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        cancelButton.addActionListener(this::cancelButtonActionPerformed);
 
         jLabel1.setText("Elegir:");
 
         btnForeColor.setText("Color Texto  ");
-        btnForeColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnForeColorActionPerformed(evt);
-            }
-        });
+        btnForeColor.addActionListener(this::btnForeColorActionPerformed);
 
         btnBackColor.setText("Color Fondo");
-        btnBackColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackColorActionPerformed(evt);
-            }
-        });
+        btnBackColor.addActionListener(this::btnBackColorActionPerformed);
 
-        paneBackColor.setBackground(new java.awt.Color(255, 255, 255));
+        paneBackColor.setBackground(new Color(255, 255, 255));
         paneBackColor.setFocusable(false);
 
-        javax.swing.GroupLayout paneBackColorLayout = new javax.swing.GroupLayout(paneBackColor);
+        GroupLayout paneBackColorLayout = new GroupLayout(paneBackColor);
         paneBackColor.setLayout(paneBackColorLayout);
         paneBackColorLayout.setHorizontalGroup(
-            paneBackColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            paneBackColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 31, Short.MAX_VALUE)
         );
         paneBackColorLayout.setVerticalGroup(
-            paneBackColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            paneBackColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
-        paneForeColor.setBackground(new java.awt.Color(255, 255, 255));
+        paneForeColor.setBackground(new Color(255, 255, 255));
         paneForeColor.setFocusable(false);
 
-        javax.swing.GroupLayout paneForeColorLayout = new javax.swing.GroupLayout(paneForeColor);
+        GroupLayout paneForeColorLayout = new GroupLayout(paneForeColor);
         paneForeColor.setLayout(paneForeColorLayout);
         paneForeColorLayout.setHorizontalGroup(
-            paneForeColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            paneForeColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
         paneForeColorLayout.setVerticalGroup(
-            paneForeColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            paneForeColorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(colorChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(colorChooser, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 640, GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnForeColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBackColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnForeColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBackColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cancelButton))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(paneBackColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(paneForeColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(paneBackColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(paneForeColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelButton, okButton});
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {cancelButton, okButton});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(colorChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(colorChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(btnForeColor)
                             .addComponent(jLabel1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(paneForeColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(paneBackColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(paneForeColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(paneBackColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBackColor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(okButton))
                 .addContainerGap())
@@ -213,21 +198,13 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
         paneBackColor.setBackground(FontFormat.backgroundColor);
 
 
-        btnForeColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectColorToModifyActionPerformed(evt);
-            }
-        });
+        btnForeColor.addActionListener(this::selectColorToModifyActionPerformed);
 
-        btnBackColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectColorToModifyActionPerformed(evt);
-            }
-        });
+        btnBackColor.addActionListener(this::selectColorToModifyActionPerformed);
 
     }
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void okButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         if (isBtnColorForegroundSelected) {
             setForeGroundColor();
         } else {
@@ -237,7 +214,7 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void cancelButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         doClose(RET_CANCEL);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
@@ -251,7 +228,7 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
     }
 
 
-    private void selectColorToModifyActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void selectColorToModifyActionPerformed(ActionEvent evt) {
         if (isBtnColorForegroundSelected) {
             isBtnColorForegroundSelected = false;
             btnBackColor.setEnabled(false);
@@ -269,15 +246,15 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
     /**
      * Closes the dialo
      */
-    private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
+    private void closeDialog(WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void btnBackColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackColorActionPerformed
+    private void btnBackColorActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBackColorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackColorActionPerformed
 
-    private void btnForeColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForeColorActionPerformed
+    private void btnForeColorActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnForeColorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnForeColorActionPerformed
     
@@ -297,47 +274,45 @@ public class ColorSelectorDialog extends javax.swing.JDialog {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ColorSelectorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(ColorSelectorDialog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ColorSelectorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(ColorSelectorDialog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ColorSelectorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ColorSelectorDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(ColorSelectorDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(ColorSelectorDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ColorSelectorDialog dialog = new ColorSelectorDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        EventQueue.invokeLater(() -> {
+            ColorSelectorDialog dialog = new ColorSelectorDialog(new JFrame(), true);
+            dialog.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBackColor;
-    private javax.swing.JButton btnForeColor;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JColorChooser colorChooser;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton okButton;
-    private javax.swing.JPanel paneBackColor;
-    private javax.swing.JPanel paneForeColor;
+    private JButton btnBackColor;
+    private JButton btnForeColor;
+    private JButton cancelButton;
+    private JColorChooser colorChooser;
+    private JLabel jLabel1;
+    private JButton okButton;
+    private JPanel paneBackColor;
+    private JPanel paneForeColor;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;

@@ -3,21 +3,27 @@ package org.example.view;
 import org.example.controller.FileHandler;
 import org.example.model.FontFormat;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.JFileChooser;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javax.swing.text.*;
+
+import static javax.swing.UIManager.getInstalledLookAndFeels;
+import static javax.swing.UIManager.setLookAndFeel;
+
 /**
  * @author admin
  */
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends JFrame {
     /**
      * Creates new form MainWindow
      */
@@ -37,100 +43,80 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textPaneMain = new javax.swing.JTextPane();
-        jPanel1 = new javax.swing.JPanel();
-        txtFont = new javax.swing.JLabel();
-        lblFontAndSize = new javax.swing.JLabel();
-        txtMark = new javax.swing.JLabel();
-        txtCount = new javax.swing.JLabel();
-        lblCountChars = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuFile = new javax.swing.JMenu();
-        menuItemNew = new javax.swing.JMenuItem();
-        menuItemOpen = new javax.swing.JMenuItem();
-        menuItemSave = new javax.swing.JMenuItem();
-        menuItemSaveWith = new javax.swing.JMenuItem();
-        menuItemExit = new javax.swing.JMenuItem();
-//        menuOptions = new javax.swing.JMenu();
-        menuItemFontFormat = new javax.swing.JMenuItem();
-        menuItemAbout = new javax.swing.JMenuItem();
+        jScrollPane1 = new JScrollPane();
+        textPaneMain = new JTextPane();
+        jPanel1 = new JPanel();
+        txtFont = new JLabel();
+        lblFontAndSize = new JLabel();
+        txtMark = new JLabel();
+        txtCount = new JLabel();
+        lblCountChars = new JLabel();
+        jMenuBar1 = new JMenuBar();
+        menuFile = new JMenu();
+        menuItemNew = new JMenuItem();
+        menuItemOpen = new JMenuItem();
+        menuItemSave = new JMenuItem();
+        menuItemSaveWith = new JMenuItem();
+        menuItemExit = new JMenuItem();
+//        menuOptions = new JMenu();
+        menuItemFontFormat = new JMenuItem();
+        menuItemAbout = new JMenuItem();
 
         setTitle("Editor de texto");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        textPaneMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
-        textPaneMain.setPreferredSize(new java.awt.Dimension(500, 400));
+        textPaneMain.setBorder(BorderFactory.createEmptyBorder(7, 7, 7, 7));
+        textPaneMain.setPreferredSize(new Dimension(500, 400));
         jScrollPane1.setViewportView(textPaneMain);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jScrollPane1, BorderLayout.CENTER);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel1.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.LINE_AXIS));
 
         //txtFont.setText("Fuente: ");
         //txtFont.setToolTipText("");
-//        txtFont.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 7, 0, 0));
+//        txtFont.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
 //        jPanel1.add(txtFont);
 
         //lblFontAndSize.setText("Helvetica (15)");
-        lblFontAndSize.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 7));
+        lblFontAndSize.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 7));
         jPanel1.add(lblFontAndSize);
 
         //txtMark.setText("|");
         jPanel1.add(txtMark);
 
         //txtCount.setText("Carácteres: ");
-        txtCount.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 7, 0, 0));
+        txtCount.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
         jPanel1.add(txtCount);
 
         //lblCountChars.setText("100");
-        lblCountChars.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 7));
+        lblCountChars.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 7));
         jPanel1.add(lblCountChars);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel1, BorderLayout.PAGE_END);
 
         menuFile.setText("Archivo");
 
         menuItemNew.setText("Nuevo");
-        menuItemNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemNewActionPerformed(evt);
-            }
-        });
+        menuItemNew.addActionListener(this::menuItemNewActionPerformed);
         menuFile.add(menuItemNew);
 
         menuItemOpen.setText("Abrir");
-        menuItemOpen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemOpenActionPerformed(evt);
-            }
-        });
+        menuItemOpen.addActionListener(this::menuItemOpenActionPerformed);
         menuFile.add(menuItemOpen);
 
         menuItemSave.setText("Guardar");
-        menuItemSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemSaveActionPerformed(evt);
-            }
-        });
+        menuItemSave.addActionListener(this::menuItemSaveActionPerformed);
         menuFile.add(menuItemSave);
 
         menuItemSaveWith.setText("Guardar como ...");
-        menuItemSaveWith.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemSaveWithActionPerformed(evt);
-            }
-        });
+        menuItemSaveWith.addActionListener(this::menuItemSaveWithActionPerformed);
         menuFile.add(menuItemSaveWith);
 
         menuItemExit.setText("Salir");
-        menuItemExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemExitActionPerformed(evt);
-            }
-        });
+        menuItemExit.addActionListener(this::menuItemExitActionPerformed);
         menuFile.add(menuItemExit);
 
         jMenuBar1.add(menuFile);
@@ -138,19 +124,11 @@ public class MainWindow extends javax.swing.JFrame {
 //        menuOptions.setText("Opciones");
 
         menuItemFontFormat.setText("Formato Fuente");
-        menuItemFontFormat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemFontFormatActionPerformed(evt);
-            }
-        });
+        menuItemFontFormat.addActionListener(this::menuItemFontFormatActionPerformed);
 //        menuOptions.add(menuItemFontFormat);
 
         menuItemAbout.setText("Acerca de ...");
-        menuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAboutActionPerformed(evt);
-            }
-        });
+        menuItemAbout.addActionListener(this::menuItemAboutActionPerformed);
 //        menuOptions.add(menuItemAbout);
 
 //        jMenuBar1.add(menuOptions);
@@ -160,7 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void menuItemOpenActionPerformed(java.awt.event.ActionEvent evt) {
+    private void menuItemOpenActionPerformed(ActionEvent evt) {
         JFileChooser chooser = new JFileChooser();
 
         var filtro = new FileNameExtensionFilter("*.TXT", "txt");
@@ -190,12 +168,12 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 
-    private void menuItemFontFormatActionPerformed(java.awt.event.ActionEvent evt) {
+    private void menuItemFontFormatActionPerformed(ActionEvent evt) {
         //textPaneMain.setFont(new Font("Arial", Font.PLAIN, 20));
         showFontFormat();
     }
 
-    private void menuItemNewActionPerformed(java.awt.event.ActionEvent evt) {
+    private void menuItemNewActionPerformed(ActionEvent evt) {
         JFileChooser fc = new JFileChooser();
 
         int selection = fc.showSaveDialog(this);
@@ -209,7 +187,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     //este es salir
 
-    private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt){
+    private void menuItemExitActionPerformed(ActionEvent evt){
         
         if(FileHandler.savedFile == null)            showErrorDialog();
         else{
@@ -219,11 +197,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
-    private void menuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {
+    private void menuItemAboutActionPerformed(ActionEvent evt) {
         showAboutDialog();
     }
 
-    private void menuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {
+    private void menuItemSaveActionPerformed(ActionEvent evt) {
 
         
         if(FileHandler.savedFile == null)            showErrorDialog();
@@ -232,7 +210,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     //este es el guardar como
 
-    private void menuItemSaveWithActionPerformed(java.awt.event.ActionEvent evt){
+    private void menuItemSaveWithActionPerformed(ActionEvent evt){
         
         JFileChooser fc = new JFileChooser();
  
@@ -257,29 +235,25 @@ public class MainWindow extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
+        EventQueue.invokeLater(() -> new MainWindow().setVisible(true));
     }
 
     public void showAboutDialog() {
@@ -371,23 +345,23 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCountChars;
-    private javax.swing.JLabel lblFontAndSize;
-    private javax.swing.JMenu menuFile;
-    private javax.swing.JMenuItem menuItemAbout;
-    private javax.swing.JMenuItem menuItemExit;
-    private javax.swing.JMenuItem menuItemFontFormat;
-    private javax.swing.JMenuItem menuItemNew;
-    private javax.swing.JMenuItem menuItemOpen;
-    private javax.swing.JMenuItem menuItemSave;
-    private javax.swing.JMenuItem menuItemSaveWith;
-//    private javax.swing.JMenu menuOptions;
-    private javax.swing.JTextPane textPaneMain;
-    private javax.swing.JLabel txtCount;
-    private javax.swing.JLabel txtFont;
-    private javax.swing.JLabel txtMark;
+    private JMenuBar jMenuBar1;
+    private JPanel jPanel1;
+    private JScrollPane jScrollPane1;
+    private JLabel lblCountChars;
+    private JLabel lblFontAndSize;
+    private JMenu menuFile;
+    private JMenuItem menuItemAbout;
+    private JMenuItem menuItemExit;
+    private JMenuItem menuItemFontFormat;
+    private JMenuItem menuItemNew;
+    private JMenuItem menuItemOpen;
+    private JMenuItem menuItemSave;
+    private JMenuItem menuItemSaveWith;
+//    private JMenu menuOptions;
+    private JTextPane textPaneMain;
+    private JLabel txtCount;
+    private JLabel txtFont;
+    private JLabel txtMark;
     // End of variables declaration
 }
